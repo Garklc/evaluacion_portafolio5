@@ -1,0 +1,42 @@
+-- Modelo de datos para tienda en línea
+
+CREATE TABLE clientes (
+    id_cliente INT PRIMARY KEY AUTO_INCREMENT,
+    nombre VARCHAR(100),
+    email VARCHAR(100),
+    telefono VARCHAR(20)
+);
+
+CREATE TABLE productos (
+    id_producto INT PRIMARY KEY AUTO_INCREMENT,
+    nombre VARCHAR(100),
+    precio DECIMAL(10,2),
+    stock INT
+);
+
+CREATE TABLE metodos_pago (
+    id_metodo INT PRIMARY KEY AUTO_INCREMENT,
+    tipo VARCHAR(50), -- tarjeta, transferencia, efectivo
+    descripcion TEXT
+);
+
+CREATE TABLE pedidos (
+    id_pedido INT PRIMARY KEY AUTO_INCREMENT,
+    id_cliente INT,
+    id_metodo_pago INT,
+    fecha DATE,
+    total DECIMAL(10,2),
+    estado ENUM('pendiente', 'enviado', 'entregado'),
+    FOREIGN KEY (id_cliente) REFERENCES clientes(id_cliente),
+    FOREIGN KEY (id_metodo_pago) REFERENCES metodos_pago(id_metodo)
+);
+
+CREATE TABLE detalle_pedido (
+    id_detalle INT PRIMARY KEY AUTO_INCREMENT,
+    id_pedido INT,
+    id_producto INT,
+    cantidad INT,
+    precio_unitario DECIMAL(10,2),
+    FOREIGN KEY (id_pedido) REFERENCES pedidos(id_pedido),
+    FOREIGN KEY (id_producto) REFERENCES productos(id_producto)
+);
