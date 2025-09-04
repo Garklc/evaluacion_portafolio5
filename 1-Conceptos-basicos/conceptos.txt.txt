@@ -1,0 +1,16 @@
+Componentes de una base de datos relacional:
+
+1. Tablas: Almacenan información estructurada.
+2. Registros: Filas individuales dentro de una tabla.
+3. Campos: Columnas que definen los atributos.
+4. Clave Primaria: Identificador único de cada registro.
+5. Clave Foránea: Enlace entre tablas.
+
+Ejemplo:
+Tabla CLIENTES:
+  id_cliente (PK) | nombre | email
+
+Tabla PEDIDOS:
+  id_pedido (PK) | id_cliente (FK) | fecha | total
+
+La relación se establece mediante la clave foránea "id_cliente".
